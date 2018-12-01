@@ -1,0 +1,14 @@
+{
+  "private": true,
+  "name": "advent-of-code",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Haroen Viaene <hello@haroen.me>",
+  "license": "MIT",
+  "workspaces": [
+    "2018/*"
+  ],
+  "devDependencies": {
+    "@types/node": "^10.12.11"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "advent-of-code-2018-01",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel ./src --out-dir lib --extensions '.ts,.tsx'",
+    "start": "node lib/index.js"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.5",
+    "@babel/core": "^7.1.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/preset-env": "^7.1.6",
+    "@babel/preset-typescript": "^7.1.0"
+  },
+  "dependencies": {
+    "jest": "^23.6.0"
+  }
+}
