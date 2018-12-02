@@ -1,0 +1,10 @@
+{
+  "name": "advent-of-code-2018-02",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel ./src --out-dir lib --extensions '.ts,.tsx'",
+    "start": "node lib/index.js"
+  }
+}
