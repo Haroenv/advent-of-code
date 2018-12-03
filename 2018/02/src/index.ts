@@ -11,8 +11,47 @@ async function main() {
 
   const checksum = getChecksum(labels);
 
+  const closeMatchingLabel = labels
+    .map(label => {
+      return [
+        label,
+        labels.reduce((acc, curr) => {
+          if (curr === label) {
+            return acc;
+          }
+          console.log(
+            curr,
+            [...curr]
+              .map((l, i) => {
+                if (label[i] === l) {
+                  return 0;
+                } else {
+                  return l;
+                }
+              })
+              .filter(l => l === 0)
+          );
+          if (
+            [...curr]
+              .map((l, i) => {
+                if (label[i] === l) {
+                  return 0;
+                } else {
+                  return l;
+                }
+              })
+              .filter(l => l === 0).length === 1
+          ) {
+            return curr;
+          }
+        }, undefined),
+      ];
+    })
+    .filter(([label, match]) => match);
+
   return {
     checksum,
+    closeMatchingLabel,
   };
 }
 
