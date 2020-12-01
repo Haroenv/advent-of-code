@@ -24,7 +24,7 @@ async function main() {
 }
 
 function getFrequencies(frequencyDrifts: number[], initial: number) {
-  return frequencyDrifts.reduce(
+  return frequencyDrifts.reduce<{ curr: number; frequencies: number[] }>(
     ({ curr, frequencies }, drift) => {
       const newFrequency = curr + drift;
       frequencies.push(newFrequency);
@@ -37,6 +37,8 @@ function getFrequencies(frequencyDrifts: number[], initial: number) {
   );
 }
 
+type Counts = { [key: string]: number };
+
 function findDouble({
   initial,
   frequencyDrifts,
@@ -44,10 +46,13 @@ function findDouble({
 }: {
   initial: number;
   frequencyDrifts: number[];
-  counts: { [key: string]: number };
+  counts: Counts;
 }) {
   const { frequencies } = getFrequencies(frequencyDrifts, initial);
-  const { firstDouble, counts: newCounts } = frequencies.reduce(
+  const { firstDouble, counts: newCounts } = frequencies.reduce<{
+    counts: Counts;
+    firstDouble?: number;
+  }>(
     ({ counts, firstDouble }, frequency) => {
       counts[frequency] = (counts[frequency] || 0) + 1;
       if (counts[frequency] === 2 && !firstDouble) {
@@ -76,6 +81,4 @@ function findDouble({
   });
 }
 
-main()
-  .then(console.log)
-  .catch(console.error);
+main().then(console.log).catch(console.error);
